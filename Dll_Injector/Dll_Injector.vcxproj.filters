@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mian.cpp">
+    <ClCompile Include="LoadLibaryA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
