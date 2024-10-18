@@ -11,12 +11,15 @@ int main(int argc, char* argv[])
 	DWORD pid;
 	HWND hwnd = FindWindowA(NULL, "Cube 2: Sauerbraten");
 	GetWindowThreadProcessId(hwnd, &pid);
-	HANDLE process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-	LPVOID address = VirtualAllocEx(process, NULL, MAX_PATH, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+
+	HANDLE process = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION | PROCESS_VM_WRITE, FALSE, pid);
+	LPVOID address = VirtualAllocEx(process, NULL, MAX_PATH, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+
 	WriteProcessMemory(process, address, dll_path, MAX_PATH, NULL);
 	CreateRemoteThread(process, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, address, 0, NULL);
 	
 	CloseHandle(process);
 	VirtualFreeEx(process, address, 0, MEM_RELEASE);
+
 	getchar();
 }

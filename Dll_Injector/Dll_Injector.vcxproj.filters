@@ -18,5 +18,8 @@
     <ClCompile Include="LoadLibaryA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ContextHijack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
