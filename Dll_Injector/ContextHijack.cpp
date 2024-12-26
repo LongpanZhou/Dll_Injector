@@ -4,8 +4,6 @@
 
 const char* dll_name = "Sauerbraten.dll";
 
-#include <Windows.h>
-
 BYTE* ShellCode(
 	DWORD_PTR loadLibraryAddress,
     const char* dllPath,
@@ -101,7 +99,8 @@ HANDLE GetTargetProcessHandle(DWORD &pid)
 bool CompareModuleName(const WCHAR* moduleName, const WCHAR* wModuleName) {
     std::wstring lowerModuleName;
 
-    for (const WCHAR* p = moduleName; *p; ++p) {
+    for (const WCHAR* p = moduleName; *p; ++p)
+    {
         lowerModuleName.push_back(towlower(*p));
     }
 
